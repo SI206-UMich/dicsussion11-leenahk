@@ -62,8 +62,43 @@ def add_pets_from_json(filename, cur, conn):
     f.close()
     json_data = json.loads(file_data)
 
-    # THE REST IS UP TO YOU
-    pass
+    pet_id = 0
+    for i in json_data:
+        pet_id += 1
+        name = i['name']
+        if i['species'] == 'Rabbit':
+            species_id = 0
+        if i['species'] == 'Dog':
+            species_id = 1
+        if i['species'] == 'Cat':
+            species_id = 2
+        if i['species'] == 'Boa Constrictor':
+            species_id = 3
+        if i['species'] == 'Chinchilla':
+            species_id = 4
+        if i['species'] == 'Hamster':
+            species_id = 5
+        if i['species'] == 'Cobra':
+            species_id = 6
+        if i['species'] == 'Parrot':
+            species_id = 7
+        if i['species'] == 'Shark':
+            species_id = 8
+        if i['species'] == 'Goldfish':
+            species_id = 9
+        if i['species'] == 'Gerbil':
+            species_id = 10
+        if i['species'] == 'Llama':
+            species_id = 11
+        if i['species'] == 'Hare':
+            species_id = 12
+
+        age = int(i['age'])
+        cuteness = int(i['cuteness'])
+        aggressiveness = int(i['aggressiveness'])
+
+        cur.execute('insert into Patients (pet_id, name, species_id, age, cuteness, aggressiveness) values(?, ?, ?, ?, ?, ?)', (pet_id, name, species_id, age, cuteness, aggressiveness))
+        conn.commit()
 
 
 # TASK 3
